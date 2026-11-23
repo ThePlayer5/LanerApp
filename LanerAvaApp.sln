@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37806.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanerAvaApp", "LanerAvaApp\LanerAvaApp.csproj", "{AC96AF39-0A24-48C3-B673-60EB48797BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanerApiApp", "LanerApiApp\LanerApiApp.csproj", "{CF4E20AE-884B-46D7-930B-0EA25EB1E94A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC96AF39-0A24-48C3-B673-60EB48797BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC96AF39-0A24-48C3-B673-60EB48797BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC96AF39-0A24-48C3-B673-60EB48797BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC96AF39-0A24-48C3-B673-60EB48797BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4E20AE-884B-46D7-930B-0EA25EB1E94A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4E20AE-884B-46D7-930B-0EA25EB1E94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4E20AE-884B-46D7-930B-0EA25EB1E94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4E20AE-884B-46D7-930B-0EA25EB1E94A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5690ABCB-1141-412F-A53D-165E1D63849C}
+	EndGlobalSection
+EndGlobal

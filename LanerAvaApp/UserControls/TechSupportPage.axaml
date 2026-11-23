@@ -1,0 +1,112 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.TechSupportPage">
+
+    <UserControl.Styles>
+        <Style Selector="Border.Message">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Background" Value="#EEFAF7"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Padding" Value="14,10"/>
+            <Setter Property="MaxWidth" Value="440"/>
+            <Setter Property="Margin" Value="0,3"/>
+        </Style>
+
+        <Style Selector="Border.Message.Own">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Background" Value="#60B05E"/>
+        </Style>
+
+        <Style Selector="Border.Message.Own TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="TextBlock.MessageTime">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Opacity" Value="0.65"/>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10,5">
+
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#D1F3C9"
+                BorderThickness="1"
+                CornerRadius="15"
+                Padding="16"
+                Margin="0,0,0,12">
+            <StackPanel Orientation="Horizontal" Spacing="14">
+                <Border Width="44" Height="44"
+                        CornerRadius="22"
+                        Background="#60B05E">
+                    <Image Source="/Assets/tech-support-icon.png"
+                            Width="30" Height="30"
+                            x:Name="ChatUserAvatar"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Техническая поддержка"
+                               FontSize="17"
+                               x:Name="ChatUserName"
+                               FontWeight="SemiBold"/>
+                    <TextBlock Text="Онлайн"
+                               FontSize="12"
+                               Opacity="0.7"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#D1F3C9"
+                BorderThickness="1"
+                CornerRadius="15"
+                Padding="16">
+            <ScrollViewer x:Name="MessagesScroll"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl x:Name="MessagesList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Classes="Message"
+                                    Classes.Own="{Binding IsOwn}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding MessageText}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock Classes="MessageTime"
+                                               Text="{Binding TimeText}"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,Auto"
+              Margin="0,12,0,0">
+            <TextBox x:Name="MessageInput"
+                     Grid.Column="0"
+                     PlaceholderText="Введите сообщение..."
+                     AcceptsReturn="False"
+                     MaxHeight="120"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Center"/>
+            <Button x:Name="SendButton"
+                    Grid.Column="1"
+                    Click="SendButton_Click"
+                    Classes="Arrow"
+                    Content="→"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,78 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.RegPage"
+             x:Name="RegUC">
+
+    <Grid>
+        <StackPanel Spacing="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="300">
+            <TextBlock Text="Регистрация"
+                       FontSize="20"
+                       Margin="0, 5"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="FullnameField"
+                    Text="{Binding Fullname}"
+                    PlaceholderText="ФИО">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/user-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>      
+            </TextBox>
+            <TextBox x:Name="EmailField"
+                    Text="{Binding Email}"
+                    PlaceholderText="Email">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/email-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>      
+            </TextBox>
+            <TextBox x:Name="LoginField"
+                    Text="{Binding Ulogin}"
+                    PlaceholderText="Логин">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/login-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>      
+            </TextBox>
+            <TextBox x:Name="PasswordField"
+                    Text="{Binding Password}"
+                    PasswordChar="⁕"
+                    PlaceholderText="Пароль">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/password-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>    
+            </TextBox>
+            <TextBox x:Name="ConfirmPassField"
+                    PasswordChar="⁕"
+                    PlaceholderText="Подтвердить пароль">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/confirm-pass-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>    
+            </TextBox>
+            <Button Content="Зарегестрироваться"
+                    IsEnabled="True"
+                    Margin="0 5 0 0"
+                    HorizontalAlignment="Center"
+                    Classes="MainBtnStyle"
+                    x:Name="SignUpBtn"
+                    Click="SignUpBtn_Click"/>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="5"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Уже есть аккаунт?"/>
+                <HyperlinkButton x:Name="AuthNavLink"
+                                 Click="AuthNavLink_Click">
+                    <TextBlock Text="Войти"/>
+                </HyperlinkButton>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

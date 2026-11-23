@@ -1,0 +1,102 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.AlphabetsPage">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <Grid.Styles>
+            <Style Selector="Button.Card">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <Style Selector="Button.Card:pointerover">
+                <Setter Property="Opacity" Value="0.92"/>
+            </Style>
+            <Style Selector="Button.Card:pressed">
+                <Setter Property="Opacity" Value="0.8"/>
+            </Style>
+        </Grid.Styles>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Выберите алфавит"
+                       FontSize="22"
+                       Margin="5"
+                       FontWeight="SemiBold"
+                       x:Name="WelcomeText"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto">
+            <Button Grid.Column="0"
+                    Classes="Arrow"
+                    IsEnabled="True"
+                    Content="◀"
+                    x:Name="PrevButton"
+                    Click="PrevButton_Click"
+                    Margin="5"/>
+
+            <Carousel Grid.Column="1"
+                      x:Name="AlphabetsCarousel"
+                      SelectionChanged="AlphabetsCarousel_SelectionChanged">
+                <Carousel.PageTransition>
+                    <PageSlide Duration="0:00:00.25" Orientation="Horizontal"/>
+                </Carousel.PageTransition>
+
+                <Carousel.ItemTemplate>
+                    <DataTemplate>
+                        <Button Classes="Card"
+                                x:Name="CardBtn"
+                                Click="CardBtn_Click"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <Border Width="420" Height="260"
+                                    CornerRadius="18"
+                                    ClipToBounds="True"
+                                    Margin="16"
+                                    Background="{Binding CardBackground}"
+                                    BoxShadow="0 4 16 0 #30000000">
+                                <StackPanel Spacing="10" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}"
+                                                FontSize="32"
+                                                FontWeight="SemiBold"
+                                                TextWrapping="Wrap"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding LangName}"
+                                               TextWrapping="Wrap"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Opacity="0.6"/>
+                                </StackPanel>
+                            </Border>
+                        </Button>
+                    </DataTemplate>
+                </Carousel.ItemTemplate>
+            </Carousel>
+
+            <Button Grid.Column="2"
+                    Classes="Arrow"
+                    Content="▶"
+                    IsEnabled="True"
+                    x:Name="NextButton"
+                    Click="NextButton_Click"
+                    Margin="5"/>
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,67 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.AuthPage"
+             x:Name="AuthUC">
+
+    <Grid>
+        <StackPanel Spacing="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="300">
+            <TextBlock Text="Авторизация"
+                       FontSize="20"
+                       Margin="0, 5"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="LoginField"
+                    PlaceholderText="Логин">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/login-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>      
+            </TextBox>
+            <TextBox x:Name="PasswordField"
+                    PasswordChar="⁕"
+                    PlaceholderText="Пароль">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/password-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>    
+            </TextBox>
+            <TextBox x:Name="ConfirmPassField"
+                    PasswordChar="⁕"
+                    PlaceholderText="Подтвердить пароль">
+                <TextBox.InnerLeftContent>
+                    <Image Source="/Assets/confirm-pass-icon.png"
+                           Classes="InnerIcon"/>
+                </TextBox.InnerLeftContent>    
+            </TextBox>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="5">
+                <TextBlock Text="Запомнить меня:"
+                           VerticalAlignment="Center"/>
+                <CheckBox IsChecked="false"
+                          VerticalAlignment="Center"
+                          x:Name="RememberBox"/>
+            </StackPanel>
+            <Button Content="Войти"
+                    IsEnabled="True"
+                    HorizontalAlignment="Center"
+                    Classes="MainBtnStyle"
+                    x:Name="SignInBtn"
+                    Click="SignInBtn_Click"/>
+            <StackPanel Orientation="Horizontal"
+                        Spacing="5"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Нет аккаунта?"/>
+                <HyperlinkButton x:Name="RegNavLink"
+                                 Click="RegNavLink_Click">
+                    <TextBlock Text="Зарегестрироваться"/>
+                </HyperlinkButton>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

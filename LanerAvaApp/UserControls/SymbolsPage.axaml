@@ -1,0 +1,93 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.SymbolsPage">
+
+    <UserControl.Styles>
+        <Style Selector="Border.symbolCard">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Background" Value="#EEFAF7"/>
+            <Setter Property="BorderBrush" Value="#D1F3C9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,10,10"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+        <Style Selector="Border.symbolCard:pointerover">
+            <Setter Property="Background" Value="#D1F3C9"/>
+        </Style>
+
+        <Style Selector="TextBlock.symbolGlyph">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="TextBlock.symbolTranslit">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+
+        <Style Selector="TextBlock.emptyHint">
+            <Setter Property="Opacity" Value="0.6"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto, *">
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Язык"
+                       FontSize="22"
+                       Margin="5"
+                       FontWeight="SemiBold"
+                       x:Name="WelcomeText"/>
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#D1F3C9"
+                BorderThickness="1"
+                CornerRadius="15"
+                Padding="16">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl x:Name="SymbolsList">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Classes="symbolCard">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Classes="symbolGlyph"
+                                                   Text="{Binding Symbol1}"/>
+                                        <TextBlock Classes="symbolTranslit"
+                                                   Text="{Binding Transliteration}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <TextBlock x:Name="EmptyHint"
+                           Classes="emptyHint"
+                           Text=""
+                           IsVisible="False"/>
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

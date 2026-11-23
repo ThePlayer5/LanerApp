@@ -1,0 +1,183 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.ProfilePage">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+
+        <Style Selector="TextBlock.value">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style Selector="Button.CancelBtnStyle">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="35, 12"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#60B05E"/>
+            <Setter Property="BorderBrush" Value="#60B05E"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <Grid RowDefinitions="Auto,*" Margin="40,30">
+            <TextBlock Grid.Row="0"
+                       Text="Профиль"
+                       FontSize="26"
+                       HorizontalAlignment="Center"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,20"/>
+            <Border Grid.Row="1"
+                    Background="White"
+                    BorderBrush="#D1F3C9"
+                    BorderThickness="1"
+                    CornerRadius="15"
+                    Padding="28"
+                    MaxWidth="640"
+                    HorizontalAlignment="Center">
+                <StackPanel Spacing="4">
+                    <StackPanel Orientation="Horizontal" Spacing="18" Margin="0,0,0,24">
+                        <Border Width="72" Height="72"
+                                CornerRadius="36"
+                                Background="#60B05E">
+                            <Image Source="/Assets/profile-icon.png"/>
+                        </Border>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock x:Name="HeaderName"
+                                       Text="Имя пользователя"
+                                       FontSize="22"
+                                       FontWeight="SemiBold"/>
+                            <TextBlock x:Name="HeaderRole"
+                                       Text="Роль"
+                                       FontSize="16"
+                                       Opacity="0.7"
+                                       Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel x:Name="ViewModePanel"
+                                Spacing="18">
+
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                        Text="ФИО"/>
+                            <TextBlock x:Name="ViewFullname"
+                                        Classes="value"
+                                        Text="—"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                        Text="Логин"/>
+                            <TextBlock x:Name="ViewLogin"
+                                        Classes="value"
+                                        Text="—"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                        Text="Email"/>
+                            <TextBlock x:Name="ViewEmail"
+                                        Classes="value"
+                                        Text="—"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                        Text="Пароль"/>
+                            <TextBlock Classes="value"
+                                        Text="••••••••"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,8,0,0"
+                                    Orientation="Horizontal"
+                                    Spacing="15">
+                            <Button x:Name="EditBtn"
+                                    Click="EditBtn_Click"
+                                    Classes="MainBtnStyle"
+                                    Content="Редактировать профиль"/>
+                            <Button x:Name="ExitBtn"
+                                Classes="MainBtnStyle"
+                                Background="#D64045"
+                                Click="ExitBtn_Click"
+                                Foreground="White"
+                                Content="Выйти"/>
+                        </StackPanel>
+                        <Button x:Name="ExportBtn"
+                                Click="ExportBtn_Click"
+                                Classes="CancelBtnStyle"
+                                Content="Экспорт статистики"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="EditModePanel"
+                                IsVisible="False"
+                                Spacing="5">
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                       Text="ФИО"/>
+                            <TextBox x:Name="EditFullname"
+                                     PlaceholderText="Иванов Иван Иванович"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                       Text="Логин"/>
+                            <TextBox x:Name="EditLogin"
+                                    PlaceholderText="ivan_ivanov"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                       Text="Email"/>
+                            <TextBox x:Name="EditEmail"
+                                    PlaceholderText="ivan@example.com"/>
+                        </StackPanel>
+
+                        <Border Height="1"
+                                Background="#D1F3C9"
+                                Margin="0,8,0,16"/>
+
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                       Text="Новый пароль"/>
+                            <TextBox x:Name="EditPassword"
+                                    PasswordChar="⁕"
+                                    PlaceholderText="Новый пароль"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Classes="label"
+                                       Text="Повторите новый пароль"/>
+                            <TextBox x:Name="EditPasswordConfirm"
+                                    PasswordChar="⁕"
+                                    PlaceholderText="Повтор пароля"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="12"
+                                    Margin="0,4,0,0">
+                            <Button x:Name="SaveBtn"
+                                    Click="SaveBtn_Click"
+                                    Classes="MainBtnStyle"
+                                    Content="Сохранить"/>
+                            <Button x:Name="CancelBtn"
+                                    Click="CancelBtn_Click"
+                                    Classes="CancelBtnStyle"
+                                    Content="Отмена"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

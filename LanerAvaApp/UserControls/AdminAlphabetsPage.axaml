@@ -1,0 +1,61 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.AdminAlphabetsPage"
+             x:Name="AlphabetsUC">
+
+    <Grid RowDefinitions="Auto, Auto, *"
+          Margin="5">
+            
+        <TextBlock Text="Алфавиты"
+                   FontSize="24"
+                   Grid.Row="0"
+                   FontWeight="SemiBold"
+                   Margin="0 0 0 10"/>
+
+        <DataGrid x:Name="AlphabetsDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  Tapped="AlphabetsDataGrid_Tapped">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id алфавита"
+                                    Binding="{Binding IdAlphabet}"/>
+                <DataGridTextColumn Header="Название"
+                                    Binding="{Binding Name}"/>
+				<DataGridTemplateColumn Header="Язык">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox ItemsSource="{Binding #AlphabetsUC.Languages}"
+                              SelectedValue="{Binding LangId, Mode=TwoWay}"
+                              SelectedValueBinding="{Binding IdLang}"
+                              DisplayMemberBinding="{Binding Name}"
+                              HorizontalAlignment="Stretch"
+                              BorderThickness="0"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+		<StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Spacing="5"
+                    Margin="0 0 0 10">
+			<Button Content="Добавить"
+                    Classes="DataGridBtn"
+					x:Name="AddAlphBtn"
+					Click="AddAlphBtn_Click"/>
+			<Button Content="Сохранить"
+                    Classes="DataGridBtn"
+					x:Name="SaveAlphBtn"
+					Click="SaveAlphBtn_Click"/>
+			<Button Content="Удалить"
+                    Classes="DataGridBtn"
+                    IsEnabled="False"
+					x:Name="DelAlphBtn"
+					Click="DelAlphBtn_Click"/>
+		</StackPanel>
+    </Grid>
+
+</UserControl>

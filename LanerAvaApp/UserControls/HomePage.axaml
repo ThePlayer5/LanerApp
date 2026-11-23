@@ -1,0 +1,229 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.HomePage"
+             x:Name="HomeUC">
+
+    <UserControl.Styles>
+        <Style Selector="Border.Overlay">
+            <Setter Property="Background" Value="#B3000000"/>
+        </Style>
+        <Style Selector="Border.Dialog">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="24"/>
+        </Style>
+        <Style Selector="TextBlock.DialogTitle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0 0 0 16"/>
+        </Style>
+        <Style Selector="CheckBox:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#EEFAF7"/>
+        </Style>
+        <Style Selector="Button.CancelBtn">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="35 12"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#60B05E"/>
+            <Setter Property="BorderBrush" Value="#60B05E"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style Selector="TextBlock.EmptyHint">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Opacity" Value="0.6"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <Grid.Styles>
+            <Style Selector="Button.Card">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <Style Selector="Button.Card:pointerover">
+                <Setter Property="Opacity" Value="0.92"/>
+            </Style>
+            <Style Selector="Button.Card:pressed">
+                <Setter Property="Opacity" Value="0.8"/>
+            </Style>
+        </Grid.Styles>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Добро пожаловать!"
+                       FontSize="22"
+                       Margin="5"
+                       FontWeight="SemiBold"
+                       x:Name="WelcomeText"/>
+
+            <TextBlock Text="Выберите язык для изучения"
+                       FontSize="16"
+                       Margin="5,0"
+                       FontWeight="SemiBold"
+                       Foreground="Gray"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto">
+            <Button Grid.Column="0"
+                    Classes="Arrow"
+                    IsEnabled="True"
+                    Content="◀"
+                    x:Name="PrevButton"
+                    Click="PrevButton_Click"
+                    Margin="5"/>
+
+            <Carousel Grid.Column="1"
+                      x:Name="LanguagesCarousel"
+                      SelectionChanged="LanguagesCarousel_SelectionChanged">
+                <Carousel.PageTransition>
+                    <PageSlide Duration="0:00:00.25" Orientation="Horizontal"/>
+                </Carousel.PageTransition>
+
+                <Carousel.ItemTemplate>
+                    <DataTemplate>
+                        <Button Classes="Card"
+                                x:Name="CardBtn"
+                                Click="CardBtn_Click"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <Border Width="420" Height="260"
+                                    CornerRadius="18"
+                                    ClipToBounds="True"
+                                    Margin="16"
+                                    BoxShadow="0 4 16 0 #30000000">
+                                <Grid>
+                                    <Image Source="{Binding ImagePath}"
+                                           Stretch="UniformToFill"/>
+
+                                    <Border VerticalAlignment="Bottom"
+                                            Padding="15, 5">
+                                        <StackPanel Spacing="8">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <ProgressBar Grid.Column="0"
+                                                             Classes="Card"
+                                                             Minimum="0"
+                                                             Maximum="100"
+                                                             Value="{Binding Progress}"/>
+                                                <TextBlock Grid.Column="1"
+                                                           Margin="10,0,0,0"
+                                                           FontSize="14"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="Black"
+                                                           VerticalAlignment="Center"
+                                                           Text="{Binding Progress, StringFormat='{}{0:F0}%'}"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Button>
+                    </DataTemplate>
+                </Carousel.ItemTemplate>
+            </Carousel>
+
+            <Button Grid.Column="2"
+                    Classes="Arrow"
+                    Content="▶"
+                    IsEnabled="True"
+                    x:Name="NextButton"
+                    Click="NextButton_Click"
+                    Margin="5"/>
+
+            <Grid x:Name="EmptyHint"
+                    IsVisible="False"
+                    Grid.ColumnSpan="3"
+                    Background="#FFFFFF">
+                <TextBlock Text="Курсы отсутствуют, скорее добавьте их!"
+                           FontSize="20"
+                           Opacity="0.6"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+
+        <Button x:Name="AddCourseBtn"
+                Grid.Row="2"
+                Click="AddCourseBtn_Click"
+                Classes="MainBtnStyle"
+                Content="Добавить курс"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                Margin="0 0 0 6"/>
+
+        <Grid Grid.RowSpan="3"
+              x:Name="AddCourseDialog"
+              IsVisible="False">
+            <Border Classes="Overlay"
+                    PointerPressed="Border_PointerPressed"/>
+
+            <Border Classes="Dialog"
+                    MaxWidth="480"
+                    MaxHeight="560"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    BoxShadow="0 12 40 0 #40000000">
+                <Grid RowDefinitions="Auto,*,Auto" MinHeight="220">
+                    <TextBlock Grid.Row="0"
+                               Classes="DialogTitle"
+                               Text="Добавить курс"/>
+                    <Grid Grid.Row="1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled">
+                            <ItemsControl x:Name="LangsList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Classes="LanguageItem"
+                                                  Content="{Binding Name}"
+                                                  IsChecked="{Binding IsSelected}"
+                                                  IsCheckedChanged="CheckBox_IsCheckedChanged"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <TextBlock x:Name="EmptyLangsList"
+                                   Classes="EmptyHint"
+                                   Text="Все доступные языки уже добавлены"
+                                   IsVisible="False"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Spacing="12"
+                                Margin="0,20,0,0">
+                        <Button x:Name="CancelButton"
+                                Classes="CancelBtn"
+                                Content="Отмена"/>
+                        <Button x:Name="AddButton"
+                                Classes="MainBtnStyle"
+                                Content="Добавить"
+                                IsEnabled="False"
+                                Click="AddButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+</UserControl>

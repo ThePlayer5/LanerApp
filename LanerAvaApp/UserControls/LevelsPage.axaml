@@ -1,0 +1,72 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.LevelsPage">
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid.Styles>
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="Border:pointerover">
+                <Setter Property="Opacity" Value="0.9"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
+        </Grid.Styles>
+
+        <TextBlock Grid.Row="0"
+                   Text="Выберите уровень сложности"
+                   FontSize="20"
+                   FontWeight="SemiBold"
+                   Margin="5"/>
+
+        <ListBox x:Name="LevelsLB"
+                 Grid.Row="1"
+                 SelectionChanged="LevelsLB_SelectionChanged"
+                 HorizontalAlignment="Center"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Margin="0"
+                 Padding="0">
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.Styles>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="15"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                 <DataTemplate>
+                    <Border Width="180" Height="240"
+                            CornerRadius="16"
+                            Background="{Binding CardBackground}"
+                            x:Name="LevelCardBtn">
+                        <StackPanel Spacing="10" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding LevelName}"
+                                        FontSize="20"
+                                        FontWeight="SemiBold"
+                                        HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding WordsQty, StringFormat='Слов: {0}'}"
+                                        FontSize="14"
+                                        HorizontalAlignment="Center"
+                                        Opacity="0.6"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
+</UserControl>

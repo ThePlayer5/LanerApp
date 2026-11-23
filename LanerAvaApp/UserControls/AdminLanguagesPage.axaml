@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.AdminLanguagesPage"
+             x:Name="LanguagesUC">
+
+    <Grid RowDefinitions="Auto, Auto, *"
+          Margin="5">
+            
+        <TextBlock Text="Языки"
+                   FontSize="24"
+                   Grid.Row="0"
+                   FontWeight="SemiBold"
+                   Margin="0 0 0 10"/>
+
+        <DataGrid x:Name="LangsDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  Tapped="LangsDataGrid_Tapped">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id языка"
+                                    Binding="{Binding IdLang}"/>
+                <DataGridTextColumn Header="Название"
+                                    Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+		<StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Spacing="5"
+                    Margin="0 0 0 10">
+			<Button Content="Добавить"
+                    Classes="DataGridBtn"
+					x:Name="AddLangBtn"
+					Click="AddLangBtn_Click"/>
+			<Button Content="Сохранить"
+                    Classes="DataGridBtn"
+					x:Name="SaveLangBtn"
+					Click="SaveLangBtn_Click"/>
+			<Button Content="Удалить"
+                    Classes="DataGridBtn"
+                    IsEnabled="False"
+					x:Name="DelLangBtn"
+					Click="DelLangBtn_Click"/>
+		</StackPanel>
+    </Grid>
+
+</UserControl>

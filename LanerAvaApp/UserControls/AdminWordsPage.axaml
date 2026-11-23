@@ -1,0 +1,77 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LanerAvaApp.UserControls.AdminWordsPage"
+             x:Name="WordsUC">
+
+    <Grid RowDefinitions="Auto, Auto, *"
+          Margin="5">
+            
+        <TextBlock Text="Слова"
+                   FontSize="24"
+                   Grid.Row="0"
+                   FontWeight="SemiBold"
+                   Margin="0 0 0 10"/>
+
+        <DataGrid x:Name="WordsDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  Tapped="WordsDataGrid_Tapped">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id слова"
+                                    Binding="{Binding IdWord}"/>
+                <DataGridTextColumn Header="Слово"
+                                    Binding="{Binding Word}"/>
+                <DataGridTextColumn Header="Перевод"
+                                    Binding="{Binding Translation}"/>
+                <DataGridTextColumn Header="Транскрипция"
+                                    Binding="{Binding Transcription}"/>
+				<DataGridTemplateColumn Header="Язык">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox ItemsSource="{Binding #WordsUC.Languages}"
+                              SelectedValue="{Binding LangId, Mode=TwoWay}"
+                              SelectedValueBinding="{Binding IdLang}"
+                              DisplayMemberBinding="{Binding Name}"
+                              HorizontalAlignment="Stretch"
+                              BorderThickness="0"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Уровень">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox ItemsSource="{Binding #WordsUC.Levels}"
+                              SelectedValue="{Binding LevelId, Mode=TwoWay}"
+                              SelectedValueBinding="{Binding IdLevel}"
+                              DisplayMemberBinding="{Binding Name}"
+                              HorizontalAlignment="Stretch"
+                              BorderThickness="0"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+		<StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Spacing="5"
+                    Margin="0 0 0 10">
+			<Button Content="Добавить"
+                    Classes="DataGridBtn"
+					x:Name="AddWordBtn"
+					Click="AddWordBtn_Click"/>
+			<Button Content="Сохранить"
+                    Classes="DataGridBtn"
+					x:Name="SaveWordBtn"
+					Click="SaveWordBtn_Click"/>
+			<Button Content="Удалить"
+                    Classes="DataGridBtn"
+                    IsEnabled="False"
+					x:Name="DelWordBtn"
+					Click="DelWordBtn_Click"/>
+		</StackPanel>
+    </Grid>
+
+</UserControl>

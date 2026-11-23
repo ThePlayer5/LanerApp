@@ -1,0 +1,6 @@
+@LanerApiApp_HostAddress = http://localhost:5171
+
+GET {{LanerApiApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
